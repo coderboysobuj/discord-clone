@@ -24,7 +24,7 @@ export async function NavigationSidebar() {
   });
 
   return (
-    <aside className="space-y-4 flex flex-col items-center h-full w-full py-3">
+    <aside className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
       <NavigationActions />
       <Separator className="rounded-md w-10 mx-auto h-[2px]" />
 
