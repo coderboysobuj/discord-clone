@@ -88,9 +88,6 @@ export const CreateServerModal = () => {
                   name="imageUrl"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="uppercase" htmlFor="name">
-                        Server name
-                      </FormLabel>
                       <FormControl>
                         <FileUpload
                           endpoint="serverImage"
