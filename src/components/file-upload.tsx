@@ -1,9 +1,10 @@
 "use client";
-
+import "@uploadthing/react/styles.css";
 import React from "react";
 import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { UploadDropzone } from "@/lib/uploadthing";
+import { UploadthingEndpoint } from "@/types";
 
 interface FileUploadProps {
   value: string;
@@ -26,7 +27,10 @@ export const FileUpload: React.FunctionComponent<FileUploadProps> = ({
           alt="Upload"
           src={value}
         />
-        <button onClick={() => onChange("")} className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm">
+        <button
+          onClick={() => onChange("")}
+          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+        >
           <XIcon className="h-4 w-4" />
         </button>
       </div>

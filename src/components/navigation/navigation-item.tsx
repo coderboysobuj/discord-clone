@@ -17,7 +17,10 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({ server }) => {
 
   return (
     <ActionTooltip label={server.name} align="center" side="left">
-      <button className="group relative flex items-center">
+      <button
+        onClick={() => router.push(`/servers/${server.id}`)}
+        className="group relative flex items-center"
+      >
         <div
           className={cn(
             "absolute left-0 bg-primary rounded-r-full transition-all w-1",
@@ -32,13 +35,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({ server }) => {
               "bg-primary/10 text-primary rounded-2xl",
           )}
         >
-          <Image
-            height={50}
-            width={50}
-            alt={server.name}
-            src={server.imageUrl}
-            fill
-          />
+          <Image alt={server.name} src={server.imageUrl} fill />
         </div>
       </button>
     </ActionTooltip>

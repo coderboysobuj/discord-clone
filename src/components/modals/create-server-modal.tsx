@@ -1,7 +1,6 @@
 "use client";
 
 import * as z from "zod";
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -28,6 +27,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FileUpload } from "@/components/file-upload";
+import { useModal } from "@/hooks/use-modal-store";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
@@ -35,13 +35,9 @@ const formSchema = z.object({
   imageUrl: z.string().min(1, { message: "Name is required!" }),
 });
 
-export const InitialModal = () => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
+export const CreateServerModal = () => {
+  const { isOpen, onClose, type } = useModal();
   const router = useRouter();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,24 +47,29 @@ export const InitialModal = () => {
     },
   });
 
+  const isModalOpen = isOpen && type === "createServer";
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post("/api/servers", values);
+      toast.success("Server create successfully!");
       form.reset();
+      onClose();
       router.refresh();
-      window.location.reload();
     } catch (error) {
       toast.error("Something went wrong please try again later.");
       console.log("Initial Modal error", error);
     }
   };
 
-  if (!isMounted) return null;
+  const handleClose = () => {
+    form.reset();
+    onClose();
+  };
 
   return (
-    <Dialog open>
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Customize your server </DialogTitle>

@@ -1,30 +1,37 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Open_Sans } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
-import { ThemeProvider } from '@/components/providers/theme-provider'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
-const font = Open_Sans({ subsets: ['latin'] })
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Developer Chat Application',
-  description: 'Great developer community chating application',
-}
+  title: "Developer Chat Application",
+  description: "Great developer community chating application",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={font.className}>
-          <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false} storageKey='devchat-theme' >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey="devchat-theme"
+          >
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }
