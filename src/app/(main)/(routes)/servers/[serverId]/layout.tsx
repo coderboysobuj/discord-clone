@@ -2,7 +2,7 @@ import { ServerSidebar } from "@/components/server/server-sidebar";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 type ServerLayoutProps = {
   children: React.ReactNode;
@@ -24,13 +24,15 @@ export default async function ServerLayout({
       id: params.serverId,
       members: {
         some: {
-          id: profile.id,
+          profileId: profile.id,
         },
       },
     },
   });
 
-  if (!server) return notFound();
+  if (!server) {
+    return redirect("/");
+  }
 
   return (
     <div className="h-full">
