@@ -3,6 +3,7 @@ import { initialProfile } from "@/lib/initial-profile";
 import { db } from "@/lib/db";
 
 import { Profile } from "@prisma/client";
+import { InitialModal } from "@/components/modals/initial-modal";
 
 export default async function SetupPage() {
   const profile: Profile = await initialProfile();
@@ -21,5 +22,5 @@ export default async function SetupPage() {
     return redirect(`/servers/${server.id}`);
   }
 
-  return <p className="text-4xl font-bold text-indigo-500">Create server</p>;
+  return <InitialModal />;
 }
