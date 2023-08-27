@@ -32,7 +32,13 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({ server }) => {
               "bg-primary/10 text-primary rounded-2xl",
           )}
         >
-          <Image alt={server.name} src={server.imageUrl} fill />
+          <Image
+            height={50}
+            width={50}
+            alt={server.name}
+            src={server.imageUrl}
+            fill
+          />
         </div>
       </button>
     </ActionTooltip>
