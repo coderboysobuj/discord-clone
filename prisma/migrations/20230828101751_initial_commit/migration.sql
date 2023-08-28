@@ -59,6 +59,9 @@ CREATE TABLE "Channel" (
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Server_inviteCode_key" ON "Server"("inviteCode");
+
+-- CreateIndex
 CREATE INDEX "Server_profileId_idx" ON "Server"("profileId");
 
 -- CreateIndex

@@ -11,12 +11,14 @@ interface InvitePageProps {
 export default async function InvitePage({
   params: { inviteCode },
 }: InvitePageProps) {
+  console.log("Refrest invite link");
+
   const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
   }
 
-  if (inviteCode) {
+  if (!inviteCode) {
     return redirect("/");
   }
 

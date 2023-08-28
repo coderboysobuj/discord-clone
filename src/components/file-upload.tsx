@@ -22,9 +22,9 @@ export const FileUpload: React.FunctionComponent<FileUploadProps> = ({
       <div className="w-full justify-center items-center">
         <div className="h-20 w-20 relative">
           <Image
-            className="rounded-full"
-            height={560}
-            width={560}
+            className="rounded-full self-center"
+            height={450}
+            width={650}
             alt="Upload"
             src={value}
           />

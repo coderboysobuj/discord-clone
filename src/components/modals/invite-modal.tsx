@@ -52,7 +52,7 @@ export const InviteModal = () => {
   const refreshInviteUrl = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.put(
+      const response = await axios.patch(
         `/api/servers/${server?.id}/invite-code`,
       );
       onOpen("invite", { server: response.data });
@@ -99,6 +99,7 @@ export const InviteModal = () => {
             className="mt-4 text-sm hover:text-indigo-500/80"
             variant="link"
           >
+            Generate a new link
             <RefreshCw
               className={cn("w-4 h-4 ml-2", isLoading && "animate-spin")}
             />
