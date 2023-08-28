@@ -94,10 +94,6 @@ export const InitialModal = () => {
                           onChange={field.onChange}
                         />
                       </FormControl>
-                      <FormDescription>
-                        Server image must be less than 4MB
-                      </FormDescription>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
