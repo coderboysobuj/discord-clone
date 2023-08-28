@@ -1,6 +1,7 @@
 "use client";
 
 import * as z from "zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -35,8 +36,13 @@ const formSchema = z.object({
   imageUrl: z.string().min(1, { message: "Name is required!" }),
 });
 
-export const CreateServerModal = () => {
-  const { isOpen, onClose, type } = useModal();
+export const EditServerModal = () => {
+  const {
+    isOpen,
+    onClose,
+    type,
+    data: { server },
+  } = useModal();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,15 +53,22 @@ export const CreateServerModal = () => {
     },
   });
 
-  const isModalOpen = isOpen && type === "createServer";
+  useEffect(() => {
+    if (server) {
+      form.setValue("name", server.name);
+      form.setValue("imageUrl", server.imageUrl);
+    }
+  }, [server, form]);
+
+  const isModalOpen = isOpen && type === "editServer";
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/servers", values);
-      toast.success("Server create successfully!");
-      form.reset();
-      onClose();
+      await axios.patch(`/api/servers/${server?.id}`, values);
+      toast.success("Server edited successfully!");
+
+      handleClose();
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong please try again later.");
@@ -72,7 +85,7 @@ export const CreateServerModal = () => {
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Customize your server </DialogTitle>
+          <DialogTitle>Edit server</DialogTitle>
           <DialogDescription>
             Give your server a personality with a name and an image. You can
             always change it later.
@@ -82,7 +95,7 @@ export const CreateServerModal = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-4">
-              <div className="flex items-center justify-center text-center">
+              <div className="flex w-full items-center justify-center text-center">
                 <FormField
                   control={form.control}
                   name="imageUrl"
@@ -130,7 +143,7 @@ export const CreateServerModal = () => {
             </div>
             <DialogFooter className="px-6 py-4">
               <Button variant="primary" disabled={isLoading} type="submit">
-                Create server
+                Edit server
               </Button>
             </DialogFooter>
           </form>
