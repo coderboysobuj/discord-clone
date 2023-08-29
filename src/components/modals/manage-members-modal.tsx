@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -138,10 +139,10 @@ export const ManageMembersModal = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent side='left'>
                       <DropdownMenuSub>
-                        <DropdownMenuTrigger className="flex items-center">
+                        <DropdownMenuSubTrigger className="flex items-center">
                           <ShieldQuestion className="w-4 h-4 mr-2" />
                           <span>Role</span>
-                        </DropdownMenuTrigger>
+                        </DropdownMenuSubTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuSubContent>
                             <DropdownMenuItem
