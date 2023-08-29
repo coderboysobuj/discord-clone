@@ -112,7 +112,7 @@ export const ManageMembersModal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Manage members</DialogTitle>
-          <DialogDescription className="text-center">
+          <DialogDescription>
             {server?.members?.length} Members
           </DialogDescription>
         </DialogHeader>
@@ -128,15 +128,15 @@ export const ManageMembersModal = () => {
                   {member.profile.name}
                   {roleIconMap[member.role]}
                 </div>
-                <p className="text-xs text-muted">{member.profile.email}</p>
+                <p className="text-xs text-muted-foreground">{member.profile.email}</p>
               </div>
-              {server?.profileId !== member.id && loadingId !== member.id && (
+              {server.profileId !== member.profileId && loadingId !== member.id && (
                 <div className="ml-auto">
                   <DropdownMenu>
                     <DropdownMenuTrigger>
                       <MoreVertical className="w-4 h-4" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
+                    <DropdownMenuContent side='left'>
                       <DropdownMenuSub>
                         <DropdownMenuTrigger className="flex items-center">
                           <ShieldQuestion className="w-4 h-4 mr-2" />
