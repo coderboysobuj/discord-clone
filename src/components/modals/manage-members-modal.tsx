@@ -113,7 +113,7 @@ export const ManageMembersModal = () => {
         <DialogHeader>
           <DialogTitle>Manage members</DialogTitle>
           <DialogDescription className="text-center">
-            {server.members.length} Members
+            {server?.members?.length} Members
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
@@ -130,7 +130,7 @@ export const ManageMembersModal = () => {
                 </div>
                 <p className="text-xs text-muted">{member.profile.email}</p>
               </div>
-              {server.profileId !== member.id && loadingId !== member.id && (
+              {server?.profileId !== member.id && loadingId !== member.id && (
                 <div className="ml-auto">
                   <DropdownMenu>
                     <DropdownMenuTrigger>
