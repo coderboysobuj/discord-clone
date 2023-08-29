@@ -30,7 +30,34 @@ export async function PATCH(
     });
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVERS_SERVERID:PUT]", error);
+    console.log("[SERVERS_SERVERID:PATCH]", error);
+    return new NextResponse("Internal", { status: 500 });
+  }
+}
+
+export async function DELETE(
+  _: Request,
+  { params: { serverId } }: { params: { serverId: string } },
+) {
+  try {
+    const profile = await currentProfile();
+    if (!profile) {
+      return new NextResponse("Unauthenticated", { status: 401 });
+    }
+
+    const server = await db.server.delete({
+      where: {
+        id: serverId,
+        profileId: profile.id,
+      },
+    });
+
+    if (!server) {
+      return new NextResponse("Unauthorized", { status: 403 });
+    }
+    return NextResponse.json(server);
+  } catch (error) {
+    console.log("[SERVERS_SERVERID:DELETE]", error);
     return new NextResponse("Internal", { status: 500 });
   }
 }
