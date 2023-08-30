@@ -58,7 +58,7 @@ export const DeleteServerModal = () => {
           <Button disabled={isLoading} onClick={onClose} variant="outline">
             Cancel
           </Button>
-          <Button variant="destructive" disabled={isLoading} onClick={onDelete}>
+          <Button autoFocus variant="destructive" disabled={isLoading} onClick={onDelete}>
             Delete server
           </Button>
         </DialogFooter>

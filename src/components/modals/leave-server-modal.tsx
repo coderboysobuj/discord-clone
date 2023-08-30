@@ -58,7 +58,7 @@ export const LeaveServerModal = () => {
           <Button disabled={isLoading} onClick={onClose} variant="outline">
             Cancel
           </Button>
-          <Button variant="destructive" disabled={isLoading} onClick={onLeave}>
+          <Button autoFocus variant="destructive" disabled={isLoading} onClick={onLeave}>
             Leave
           </Button>
         </DialogFooter>
